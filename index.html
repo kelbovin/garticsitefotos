@@ -26,7 +26,7 @@
       padding: 5px;
     }
 
-    button {
+    .button {
       padding: 10px;
       background-color: #ffbb0f;
       color: #6d3e04;
@@ -36,24 +36,57 @@
       font-family: "Arial Black", Arial, sans-serif;
       font-size: 24px;
     }
+
+    #photosContainer {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #photosContainer img {
+      width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    #photosContainer img:hover {
+      transform: scale(1.2);
+    }
+
+    #downloadButton {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <img src="https://gartic.com.br/imgs/v3/logoHome2x.png" alt="Logo do Gartic">
   <label for="nickInput">Digite o Nick do Gartic:</label>
   <br>
-  <input type="text" id="nickInput" placeholder="Insira o nick">
+  <input type="text" id="nickInput" placeholder="Insira o nick" onkeydown="handleKeyDown(event)">
   <br>
-  <button onclick="changeNick()">Veja</button>
+  <button class="button" onclick="showPhotos()">Veja</button>
+  <div id="photosContainer"></div>
+  <a id="downloadButton" class="button" href="#" download>Baixar</a>
 
   <script>
-    function changeNick() {
+    function showPhotos() {
       var input = document.getElementById("nickInput");
       var newNick = input.value;
+      var container = document.getElementById("photosContainer");
+      var downloadButton = document.getElementById("downloadButton");
 
       if (newNick.trim() !== "") {
         var url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
-        window.location.href = url;
+        container.innerHTML = "<a href='" + url + "' target='_blank'><img src='" + url + "' alt='Foto do nick' style='width: 300px'></a>";
+        downloadButton.style.display = "inline-block";
+        downloadButton.href = url;
+      } else {
+        container.innerHTML = "";
+        downloadButton.style.display = "none";
+      }
+    }
+
+    function handleKeyDown(event) {
+      if (event.key === "Enter") {
+        showPhotos();
       }
     }
   </script>
