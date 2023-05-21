@@ -1,1 +1,48 @@
-nochei pera
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alterar Nick</title>
+  <style>
+    body {
+      background-color: blue;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      width: 200px;
+      padding: 5px;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #ffffff;
+      color: blue;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <label for="nickInput">Digite seu novo apelido:</label>
+  <input type="text" id="nickInput">
+  <button onclick="changeNick()">Alterar</button>
+
+  <script>
+    function changeNick() {
+      var input = document.getElementById("nickInput");
+      var newNick = input.value;
+
+      if (newNick.trim() !== "") {
+        var url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
+        window.location.href = url;
+      }
+    }
+  </script>
+</body>
+</html>
