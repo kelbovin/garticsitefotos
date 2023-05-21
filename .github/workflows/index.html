@@ -6,7 +6,12 @@
     body {
       background-color: blue;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: "Arial Black", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
 
     label {
@@ -21,17 +26,17 @@
 
     button {
       padding: 10px;
-      background-color: #ffffff;
-      color: blue;
+      background-color: yellow;
+      color: white;
       border: none;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <label for="nickInput">Digite o Nick do Gartic:</label>
+  <label for="nickInput">Digite seu novo apelido:</label>
   <input type="text" id="nickInput">
-  <button onclick="changeNick()">Veja</button>
+  <button onclick="changeNick()">Alterar</button>
 
   <script>
     function changeNick() {
