@@ -10,6 +10,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
       margin: 0;
     }
@@ -17,6 +18,7 @@
     label {
       display: block;
       margin-bottom: 10px;
+      font-size: 20px;
     }
 
     input[type="text"] {
@@ -26,17 +28,23 @@
 
     button {
       padding: 10px;
-      background-color: yellow;
-      color: white;
-      border: none;
+      background-color: #ffbb0f;
+      color: #6d3e04;
+      border: 1px solid #e28208; /* Nova borda do botão */
       cursor: pointer;
+      margin-top: 10px;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
-  <label for="nickInput">Digite seu novo apelido:</label>
-  <input type="text" id="nickInput">
-  <button onclick="changeNick()">Alterar</button>
+  <img src="https://gartic.com.br/imgs/v3/logoHome2x.png" alt="Logo do Gartic">
+  <label for="nickInput">Digite o Nick do Gartic:</label>
+  <br>
+  <input type="text" id="nickInput" placeholder="Insira o nick">
+  <br>
+  <button onclick="changeNick()">Veja</button>
 
   <script>
     function changeNick() {
