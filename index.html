@@ -48,8 +48,10 @@
       transition: transform 0.3s ease;
     }
 
-    #photosContainer img:hover {
-      transform: scale(1.2);
+    #imageCaption {
+      color: white;
+      font-family: "Arial Black", Arial, sans-serif;
+      margin-top: 10px;
     }
 
     /* Adiciona regras de estilo para dispositivos móveis */
@@ -81,18 +83,22 @@
   <br>
   <button class="button" onclick="showPhotos()">Veja</button>
   <div id="photosContainer"></div>
+  <div id="imageCaption"></div>
 
   <script>
     function showPhotos() {
       var input = document.getElementById("nickInput");
       var newNick = input.value;
       var container = document.getElementById("photosContainer");
+      var caption = document.getElementById("imageCaption");
 
       if (newNick.trim() !== "") {
         var url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
         container.innerHTML = "<a href='" + url + "' target='_blank'><img src='" + url + "' alt='Foto do nick'></a>";
+        caption.textContent = "Aqui está a imagem de perfil!";
       } else {
         container.innerHTML = "";
+        caption.textContent = "";
       }
     }
 
