@@ -39,6 +39,13 @@
       font-size: 24px;
     }
 
+    .error-message {
+      color: red;
+      font-family: "Arial Black", Arial, sans-serif;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+
     #photosContainer {
       margin-top: 20px;
       text-align: center;
@@ -47,6 +54,8 @@
     #photosContainer img {
       width: 300px;
       transition: transform 0.3s ease;
+      border: 1px solid #e28208;
+      box-sizing: border-box;
     }
 
     #imageCaption {
@@ -54,6 +63,17 @@
       font-family: "Arial Black", Arial, sans-serif;
       margin-top: 10px;
       font-size: 20px;
+    }
+
+    .close-button {
+      padding: 5px;
+      background-color: #ffbb0f;
+      color: #6d3e04;
+      border: 1px solid #e28208;
+      cursor: pointer;
+      margin-top: 10px;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 16px;
     }
 
     /* Adiciona regras de estilo para dispositivos móveis */
@@ -86,6 +106,8 @@
   <button class="button" onclick="showPhotos()">Veja</button>
   <div id="photosContainer"></div>
   <div id="imageCaption"></div>
+  <div id="errorMessage" class="error-message"></div>
+  <button id="closeButton" class="close-button" onclick="resetForm()" style="display: none;">Fechar Imagem</button>
 
   <script>
     function showPhotos() {
@@ -93,14 +115,21 @@
       var newNick = input.value;
       var container = document.getElementById("photosContainer");
       var caption = document.getElementById("imageCaption");
+      var errorMessage = document.getElementById("errorMessage");
+      var closeButton = document.getElementById("closeButton");
 
       if (newNick.trim() !== "") {
         var url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
         container.innerHTML = "<a href='" + url + "' target='_blank'><img src='" + url + "' alt='Foto do nick'></a>";
         caption.textContent = "Aqui está a imagem de perfil!";
+        errorMessage.textContent = "";
+        input.value = "";
+        closeButton.style.display = "block";
       } else {
         container.innerHTML = "";
         caption.textContent = "";
+        errorMessage.textContent = "Digite o nick da conta corretamente. Qualquer erro não será exibido.";
+        closeButton.style.display = "none";
       }
     }
 
@@ -108,6 +137,18 @@
       if (event.key === "Enter") {
         showPhotos();
       }
+    }
+
+    function resetForm() {
+      var container = document.getElementById("photosContainer");
+      var caption = document.getElementById("imageCaption");
+      var closeButton = document.getElementById("closeButton");
+      var errorMessage = document.getElementById("errorMessage");
+
+      container.innerHTML = "";
+      caption.textContent = "";
+      closeButton.style.display = "none";
+      errorMessage.textContent = "";
     }
   </script>
 </body>
