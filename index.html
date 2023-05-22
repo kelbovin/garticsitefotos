@@ -3,10 +3,11 @@
 <head>
   <title>Gartic Fotos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="https://gartic.com.br/imgs/instagram/avatar.png?v=1">
   <style>
     body {
-      background-color: blue;
+      background-color: #666;
+      background-image: url("https://gartic.com.br/imgs/sala/pattern_preto.png");
+      background-repeat: repeat;
       color: white;
       font-family: "Arial Black", Arial, sans-serif;
       display: flex;
@@ -39,13 +40,6 @@
       font-size: 24px;
     }
 
-    .error-message {
-      color: red;
-      font-family: "Arial Black", Arial, sans-serif;
-      margin-top: 10px;
-      font-size: 16px;
-    }
-
     #photosContainer {
       margin-top: 20px;
       text-align: center;
@@ -54,8 +48,7 @@
     #photosContainer img {
       width: 300px;
       transition: transform 0.3s ease;
-      border: 1px solid #e28208;
-      box-sizing: border-box;
+      border: 2px solid #ffbb0f;
     }
 
     #imageCaption {
@@ -65,14 +58,21 @@
       font-size: 20px;
     }
 
-    .close-button {
-      padding: 5px;
+    .closeButton {
+      display: none;
+      margin-top: 10px;
+      font-size: 18px;
+      cursor: pointer;
       background-color: #ffbb0f;
       color: #6d3e04;
       border: 1px solid #e28208;
-      cursor: pointer;
-      margin-top: 10px;
+      padding: 5px 10px;
       font-family: "Arial Black", Arial, sans-serif;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
       font-size: 16px;
     }
 
@@ -104,10 +104,10 @@
   <input type="text" id="nickInput" placeholder="Insira o nick" onkeydown="handleKeyDown(event)">
   <br>
   <button class="button" onclick="showPhotos()">Veja</button>
+  <div class="error" id="errorMessage"></div>
   <div id="photosContainer"></div>
   <div id="imageCaption"></div>
-  <div id="errorMessage" class="error-message"></div>
-  <button id="closeButton" class="close-button" onclick="resetForm()" style="display: none;">Fechar Imagem</button>
+  <div class="closeButton" onclick="closeImage()">Fechar imagem</div>
 
   <script>
     function showPhotos() {
@@ -116,20 +116,20 @@
       var container = document.getElementById("photosContainer");
       var caption = document.getElementById("imageCaption");
       var errorMessage = document.getElementById("errorMessage");
-      var closeButton = document.getElementById("closeButton");
+      var closeButton = document.querySelector(".closeButton");
 
       if (newNick.trim() !== "") {
         var url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
         container.innerHTML = "<a href='" + url + "' target='_blank'><img src='" + url + "' alt='Foto do nick'></a>";
         caption.textContent = "Aqui está a imagem de perfil!";
-        errorMessage.textContent = "";
-        input.value = "";
         closeButton.style.display = "block";
+        errorMessage.textContent = "";
       } else {
         container.innerHTML = "";
         caption.textContent = "";
-        errorMessage.textContent = "Digite o nick da conta corretamente. Qualquer erro não será exibido.";
         closeButton.style.display = "none";
+        errorMessage.textContent = "Digite o nick da conta corretamente. Qualquer erro não irá mostrá-lo.";
+        errorMessage.style.color = "red";
       }
     }
 
@@ -139,10 +139,10 @@
       }
     }
 
-    function resetForm() {
+    function closeImage() {
       var container = document.getElementById("photosContainer");
       var caption = document.getElementById("imageCaption");
-      var closeButton = document.getElementById("closeButton");
+      var closeButton = document.querySelector(".closeButton");
       var errorMessage = document.getElementById("errorMessage");
 
       container.innerHTML = "";
