@@ -98,6 +98,7 @@
     <br>
     <button class="button" onclick="showPhotos('Atual')">Veja Atual</button>
     <button class="button" onclick="showPhotos('Antiga')">Veja Antiga</button>
+    <button class="button" onclick="showPhotos('Antiga2')">Veja Antiga 2</button>
     <div class="error" id="errorMessage"></div>
     <div id="photosContainer"></div>
     <div id="imageCaption"></div>
@@ -122,8 +123,12 @@
                     imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Foto do nick'></a>";
                 } else if (type === 'Antiga') {
                     var nickInicial = newNick.substring(0, 2);
-                    url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar_mini.png?v=0`;
+                    url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar.png?v=43`;
                     imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Avatar Antigo'></a>";
+                } else if (type === 'Antiga2') {
+                    var nickInicial = newNick.substring(0, 2);
+                    url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar_mini.png?v=0`;
+                    imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Avatar Antigo 2'></a>";
                 }
 
                 container.innerHTML = imgHtml;
