@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Gartic Fotos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,6 +91,7 @@
         }
     </style>
 </head>
+
 <body>
     <img src="https://gartic.com.br/imgs/v3/logoHome2x.png" alt="Logo do Gartic">
     <label for="nickInput">Digite o Nick do Gartic:</label>
@@ -116,19 +118,20 @@
 
             if (newNick.trim() !== "") {
                 var url = "";
+                var fileName = newNick + "_" + type; // Defina o nome do arquivo desejado
                 var imgHtml = "";
 
                 if (type === 'Atual') {
                     url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
-                    imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Foto do nick'></a>";
+                    imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Foto do nick'></a>";
                 } else if (type === 'Antiga') {
                     var nickInicial = newNick.substring(0, 2);
                     url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar.png?v=43`;
-                    imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Avatar Antigo'></a>";
+                    imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Avatar Antigo'></a>";
                 } else if (type === 'Antiga2') {
                     var nickInicial = newNick.substring(0, 2);
                     url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar_mini.png?v=0`;
-                    imgHtml = "<a href='" + url + "' target='_blank' download><img src='" + url + "' alt='Avatar Antigo 2'></a>";
+                    imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Avatar Antigo 2'></a>";
                 }
 
                 container.innerHTML = imgHtml;
@@ -165,4 +168,5 @@
         }
     </script>
 </body>
+
 </html>
