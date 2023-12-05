@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: #666;
+            background-color: #666; /* Cor de fundo padrão */
             background-image: url("https://gartic.com.br/imgs/sala/pattern_preto.png");
             background-repeat: repeat;
             color: white;
@@ -18,6 +18,14 @@
             height: 100vh;
             margin: 0;
         }
+
+        /* Adicionando cores adicionais para o fundo da página */
+        body.blue { background-color: #0081FF; }
+        body.gray { background-color: #666; }
+        body.red { background-color: #D54038; }
+        body.orange { background-color: #FFA006; }
+        body.green { background-color: #388E3C; }
+        body.pink { background-color: #FF4081; }
 
         label {
             display: block;
@@ -89,10 +97,17 @@
             height: 300px;
             margin-top: 20px;
         }
+        
+        /* Adicionando estilos para o seletor de cor de fundo */
+        #backgroundColorSelector {
+            margin-top: 10px;
+            font-family: "Arial Black", Arial, sans-serif;
+            font-size: 18px;
+        }
     </style>
 </head>
 
-<body>
+<body class="gray">
     <img src="https://gartic.com.br/imgs/v3/logoHome2x.png" alt="Logo do Gartic">
     <label for="nickInput">Digite o Nick do Gartic:</label>
     <br>
@@ -107,7 +122,27 @@
     <div class="closeButton" onclick="closeImage()">Fechar imagem</div>
     <img id="avatar" src="" alt="Avatar">
 
+    <!-- Adicionando um seletor para a cor do fundo -->
+    <label for="backgroundColorSelector">Selecione a cor de fundo:</label>
+    <select id="backgroundColorSelector" onchange="changeBackgroundColor()">
+        <option value="blue">Azul</option>
+        <option value="gray">Cinza</option>
+        <option value="red">Vermelha</option>
+        <option value="orange">Laranja</option>
+        <option value="green">Verde</option>
+        <option value="pink">Rosa</option>
+    </select>
+
     <script>
+        // Função para trocar a cor de fundo
+        function changeBackgroundColor() {
+            var select = document.getElementById("backgroundColorSelector");
+            var body = document.body;
+
+            // Altera a classe do corpo para a cor selecionada
+            body.className = select.value;
+        }
+
         function showPhotos(type) {
             var input = document.getElementById("nickInput");
             var newNick = input.value;
@@ -119,7 +154,7 @@
             if (newNick.trim() !== "") {
                 var url = "";
                 var fileName = newNick + "_" + type; // Defina o nome do arquivo desejado
-                var imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Foto do nick'></a>";
+                var imgHtml = "";
 
                 if (type === 'Atual') {
                     url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
