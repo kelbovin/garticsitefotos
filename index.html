@@ -119,7 +119,7 @@
             if (newNick.trim() !== "") {
                 var url = "";
                 var fileName = newNick + "_" + type; // Defina o nome do arquivo desejado
-                var imgHtml = "";
+                var imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Foto do nick'></a>";
 
                 if (type === 'Atual') {
                     url = "https://gartic.com.br/avatar.php?nick=" + encodeURIComponent(newNick);
