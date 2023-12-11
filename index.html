@@ -4,9 +4,12 @@
 <head>
     <title>Gartic Fotos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adicionando o favicon -->
+    <link rel="icon" type="image/png" href="https://gartic.com.br/imgs/instagram/avatar.png?v=1">
+    <!-- Estilos CSS -->
     <style>
         body {
-            background-color: #666; /* Cor de fundo padrão */
+            background-color: #666;
             background-image: url("https://gartic.com.br/imgs/sala/pattern_preto.png");
             background-repeat: repeat;
             color: white;
@@ -163,7 +166,7 @@
                     var nickInicial = newNick.substring(0, 2);
                     url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar.png?v=43`;
                     imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Avatar Antigo'></a>";
-                } else if (type === 'Antiga2') {
+                } else if (type === 'Antiga do Rank 2') {
                     var nickInicial = newNick.substring(0, 2);
                     url = `https://gartic.com.br/imgs/mural/${nickInicial}/${newNick}/avatar_mini.png?v=0`;
                     imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Avatar Antigo 2'></a>";
