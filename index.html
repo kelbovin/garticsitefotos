@@ -172,8 +172,6 @@
                     imgHtml = "<a href='" + url + "' download='" + fileName + "'><img src='" + url + "' alt='Avatar Antigo 2'></a>";
                 }
 
-                }
-
                 container.innerHTML = imgHtml;
                 caption.textContent = "Clique na imagem para baixar!";
                 closeButton.style.display = "block";
@@ -189,7 +187,7 @@
 
         function handleKeyDown(event) {
             if (event.key === "Enter") {
-                showPhotos();
+                showPhotos('Atual'); // Ou substitua pelo tipo desejado (Atual, Antiga, Antiga2)
             }
         }
 
